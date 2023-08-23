@@ -130,15 +130,17 @@ class FunctionsTest extends TestCase {
     public function testExtractData() {
 
         $functions = new Functions();
+        $casesValid = $extractDataSuites['valid'];
+        $casesDiffCounts = $extractDataSuites['diffCounts'];
 
-        foreach ($extractDataSuites['valid'] as $case) {
-            $actual = $functions->extractData($case['input']);
-            $this->assertEqualSets($case['expected'], $actual);
+        foreach ($casesValid as $case) {
+            $actual = $functions->extractData($case[0]);
+            $this->assertEqualSets($case[1], $actual);
         }
 
-        foreach ($extractDataSuites['diffCounts'] as $case) {
+        foreach ($casesDiffCounts as $case) {
             $this->expectException(Exception::class);
-            $actual = $functions->extractData($case['input']);
+            $actual = $functions->extractData($case[0]);
         }
 
     }
