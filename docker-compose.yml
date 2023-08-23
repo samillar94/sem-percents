@@ -1,0 +1,10 @@
+version: '3'
+services:
+  php-microservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8006:80"
+    volumes:
+      - ./app:/var/www/html
