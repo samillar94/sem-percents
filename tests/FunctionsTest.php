@@ -130,7 +130,7 @@ class FunctionsTest extends TestCase {
     public function testExtractData() {
 
         $functions = new Functions();
-        $casesValid = $this->$extractDataSuites['valid'];
+        $casesValid = (array)($this->$extractDataSuites['valid']);
         echo count($casesValid);
         $casesDiffCounts = $this->$extractDataSuites['diffCounts'];
         echo count($casesDiffCounts);
