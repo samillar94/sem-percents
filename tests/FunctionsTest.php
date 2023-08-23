@@ -256,10 +256,9 @@ class FunctionsTest extends TestCase {
 
         $functions = new Functions();
 
-        foreach ($casesValid as $case) {
-            $actual = $functions->extractData($case[0]);
-            $this->assertEqualsCanonicalizing($case[1], $actual);
-        }
+        $actual = $functions->extractData($case[0]);
+        $this->assertEqualsCanonicalizing($case[1], $actual);
+
 
     }
 
@@ -270,10 +269,8 @@ class FunctionsTest extends TestCase {
 
         $functions = new Functions();
 
-        foreach ($casesDiffCounts as $case) {
-            $this->expectException(Exception::class);
-            $actual = $functions->extractData($case[0]);
-        }
+        $this->expectException(Exception::class);
+        $actual = $functions->extractData($case[0]);
 
     }
 };
