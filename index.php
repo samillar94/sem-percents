@@ -1,5 +1,6 @@
 <?php
-require_once 'src/Functions.php';
+require 'src/Functions.php';
+use App\Functions;
 $proxy = json_decode(file_get_contents('proxyregistry.json'), true);
 
 /// Register on startup
@@ -24,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	$functions = new Functions();
 
 	try {
-		$extractedData = $functions->extractData($_REQUEST['query']);
+		$extractedData = $functions->extractData($_REQUEST);
 		$resToFront = $functions->buildResponse($extractedData);
 	} catch (Exception $e) {
-		$resToFront['message'] = $e;
+		$resToFront['message'] = "A function threw an exception: {$e}";
 	}
 
 	echo json_encode($resToFront);

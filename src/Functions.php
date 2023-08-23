@@ -1,5 +1,6 @@
 <?php
 namespace App;
+error_reporting(E_ALL);
 
 class Functions {
   public function extractData($query)
@@ -15,13 +16,13 @@ class Functions {
 
     $hasNext = true;
 
+    if (!array_key_exists("item_1", $query) || !array_key_exists("attendance_1", $query) || !array_key_exists("availability_1", $query)) {
+      throw new \Exception("Component attribute missing");
+    };
+
     $i = $query['item_1'];
     $att = $query['attendance_1'];
     $av = $query['availability_1'];
-
-    if (!isset($i) || !isset($att) || !isset($av)) {
-      throw new \Exception("Component attribute missing");
-    };
 
     for ($nextID = 2; ($nextID <= $count/3 + 1 && $hasNext == true); $nextID++) {
 
@@ -42,8 +43,8 @@ class Functions {
       if ($attFloat < 0) {
           throw new \Exception("Negative attendance");
       };
-      if ($avFloat < 0) {
-          throw new \Exception("Negative availability");
+      if ($avFloat <= 0) {
+          throw new \Exception("Negative or zero availability");
       };
 
       if ($attFloat > $avFloat) {
@@ -54,44 +55,57 @@ class Functions {
       $extractedData['attendances'][] = $attFloat;
       $extractedData['availabilities'][] = $avFloat;
 
-      $i = $query["item_{$nextID}"];
-      $att = $query["attendance_{$nextID}"];
-      $av = $query["availability_{$nextID}"];
+      if (!array_key_exists("item_{$nextID}", $query) && !array_key_exists("attendance_{$nextID}", $query) && !array_key_exists("availability_{$nextID}", $query)) {
 
-      if (!isset($i) && !isset($att) && !isset($av)) {
         $hasNext = false;
-      } elseif (!isset($i) || !isset($att) || !isset($av)) {
+
+      } elseif (!array_key_exists("item_{$nextID}", $query) || !array_key_exists("attendance_{$nextID}", $query) || !array_key_exists("availability_{$nextID}", $query)) {
+
         throw new \Exception("Inconsistent counts of component attributes");
+
+      } else {
+
+        $i = $query["item_{$nextID}"];
+        $att = $query["attendance_{$nextID}"];
+        $av = $query["availability_{$nextID}"];     
+
       };
 
-    } ;
+    };
 
     return $extractedData;
   }
 
   public function buildResponse($extractedData) {
 
-    $resToFront = array(
-      "error" => false,
-      "data" => array(
-        "percents" => array(),
-      ),
-      "lines" => array()
-    );
+    try {
+      $resToFront = array(
+        "error" => false,
+        "data" => array(
+          "percents" => array(),
+        ),
+        "lines" => array()
+      );
 
-    for ($index = 0; $index < count($extractedData['items']); $index++) {
+      for ($index = 0; $index < count($extractedData['items']); $index++) {
+        
+        $item = $extractedData['items'][$index];
+        $attendance = $extractedData['attendances'][$index];
+        $availability = $extractedData['availabilities'][$index];
 
-      $item = $extractedData['items'][$index];
-      $attendance = $extractedData['attendance'][$index];
-      $availability = $extractedData['availability'][$index];
+        $percent = (100*$attendance/$availability);
+        $resToFront['data']['percents'][] = $percent;
 
-      $percent = (100*$attendance/$availability);
-      $resToFront['data']['percents'][] = $percent;
+        $line = $item.': '.round($percent).'% attendance';
+        $resToFront['lines'][] = $line;
 
-      $line = $item.': '.round($percent).'% attendance';
-      $resToFront['lines'][] = $line;
-
-    };
+      };
+    } catch (Exception $e) {
+      $resToFront = array(
+        "error" => true,
+        "message" => $e
+      );
+    }
 
     return $resToFront;
   }
