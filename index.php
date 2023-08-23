@@ -1,5 +1,5 @@
 <?php
-require('./src/functions.inc.php');
+require_once 'src/Functions.php'
 $proxy = json_decode(file_get_contents('./proxyregistry.json'), true);
 
 /// Register on startup
