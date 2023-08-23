@@ -22,7 +22,7 @@ $extractDataSuites = array(
             array(
                 "items" => array("Lecture sessions","Lab sessions","Support sessions","Canvas activities"),
                 "attendances" => array(0,1,10,55),
-                "availabilities" ==> array(33,22,44,55)   
+                "availabilities" => array(33,22,44,55)   
             )
         ),
         array(
