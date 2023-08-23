@@ -1,5 +1,6 @@
 <?php
 use App\Functions;
+use Exception;
 use PHPUnit\Framework\TestCase;
 // include '../src/Functions.php';
 
