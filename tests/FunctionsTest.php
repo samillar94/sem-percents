@@ -131,11 +131,13 @@ class FunctionsTest extends TestCase {
 
         $functions = new Functions();
         $casesValid = $this->$extractDataSuites['valid'];
+        echo count($casesValid);
         $casesDiffCounts = $this->$extractDataSuites['diffCounts'];
+        echo count($casesDiffCounts);
 
         foreach ($casesValid as $case) {
             $actual = $functions->extractData($case[0]);
-            $this->assertEqualSets($case[1], $actual);
+            $this->assertEqualsCanonicalizing($case[1], $actual);
         }
 
         foreach ($casesDiffCounts as $case) {
