@@ -1,6 +1,6 @@
 <?php
 require_once 'src/Functions.php';
-$proxy = json_decode(file_get_contents('./proxyregistry.json'), true);
+$proxy = json_decode(file_get_contents('proxyregistry.json'), true);
 
 /// Register on startup
 $postData = json_encode(["name" => "percents", "healthy" => true]);

@@ -1,10 +1,10 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require_once 'src/Functions.php';
+require_once '../src/Functions.php';
 
 class FunctionsTest extends TestCase {
 
-    private array $extractDataSuites = array(
+    public array $extractDataSuites = array(
         /// Some translated from js to PHP by GPT-3.5
         "valid" => array(
             array(
@@ -126,11 +126,11 @@ class FunctionsTest extends TestCase {
 
     );
 
-
     public function testExtractData() {
 
         $functions = new Functions();
         $casesValid = $extractDataSuites['valid'];
+        print($casesValid);
         $casesDiffCounts = $extractDataSuites['diffCounts'];
 
         foreach ($casesValid as $case) {
