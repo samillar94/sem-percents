@@ -1,6 +1,7 @@
 <?php
+use App\Functions;
 use PHPUnit\Framework\TestCase;
-include '../src/Functions.php';
+// include '../src/Functions.php';
 
 class FunctionsTest extends TestCase {
 

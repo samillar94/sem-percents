@@ -21,9 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		"error"=> true
 	);
 
+	$functions = new Functions();
+
 	try {
-		$extractedData = extractData($_REQUEST['query']);
-		$resToFront = buildResponse($extractedData);
+		$extractedData = $functions->extractData($_REQUEST['query']);
+		$resToFront = $functions->buildResponse($extractedData);
 	} catch (Exception $e) {
 		$resToFront['message'] = $e;
 	}
