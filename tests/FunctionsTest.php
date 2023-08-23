@@ -129,11 +129,13 @@ class FunctionsTest extends TestCase {
 
     public function testExtractData() {
 
+        echo $this->$extractDataSuites;
+
         $functions = new Functions();
         $casesValid = (array)($this->$extractDataSuites['valid']);
-        echo count($casesValid);
+        // echo count($casesValid);
         $casesDiffCounts = (array)($this->$extractDataSuites['diffCounts']);
-        echo count($casesDiffCounts);
+        // echo count($casesDiffCounts);
 
         foreach ($casesValid as $case) {
             $actual = $functions->extractData($case[0]);
