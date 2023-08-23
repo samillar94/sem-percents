@@ -20,34 +20,34 @@ class Functions {
     $av = $query['availability_1'];
 
     if (!isset($i) || !isset($att) || !isset($av)) {
-      throw new Exception("Component attribute missing");
+      throw new \Exception("Component attribute missing");
     };
 
     for ($nextID = 2; ($nextID <= $count/3 + 1 && $hasNext == true); $nextID++) {
 
       if (strlen($i) == 0) {
-        throw new Exception("Unlabelled item");
+        throw new \Exception("Unlabelled item");
       };
 
       $attFloat = floatval($att);
       $avFloat = floatval($av);
 
       if (is_nan($attFloat)) {
-          throw new Exception("Non-numerical/blank attendance");
+          throw new \Exception("Non-numerical/blank attendance");
       };
       if (is_nan($avFloat)) {
-          throw new Exception("Non-numerical/blank availability");
+          throw new \Exception("Non-numerical/blank availability");
       };
 
       if ($attFloat < 0) {
-          throw new Exception("Negative attendance");
+          throw new \Exception("Negative attendance");
       };
       if ($avFloat < 0) {
-          throw new Exception("Negative availability");
+          throw new \Exception("Negative availability");
       };
 
       if ($attFloat > $avFloat) {
-          throw new Exception("Attendance larger than available");
+          throw new \Exception("Attendance larger than available");
       };
 
       $extractedData['items'][] = $i;
@@ -61,7 +61,7 @@ class Functions {
       if (!isset($i) && !isset($att) && !isset($av)) {
         $hasNext = false;
       } elseif (!isset($i) || !isset($att) || !isset($av)) {
-        throw new Exception("Inconsistent counts of component attributes.");
+        throw new \Exception("Inconsistent counts of component attributes.");
       };
 
     } ;

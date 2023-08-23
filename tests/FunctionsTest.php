@@ -1,6 +1,6 @@
 <?php
 use App\Functions;
-use Exception;
+// use \Exception;
 use PHPUnit\Framework\TestCase;
 // include '../src/Functions.php';
 
@@ -270,7 +270,7 @@ class FunctionsTest extends TestCase {
 
         $functions = new Functions();
 
-        $this->expectException(Exception::class);
+        $this->expectException(\Exception::class);
         $actual = $functions->extractData($case[0]);
 
     }
