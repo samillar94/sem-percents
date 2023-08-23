@@ -1,5 +1,5 @@
 <?php
-require_once 'src/Functions.php'
+require_once 'src/Functions.php';
 $proxy = json_decode(file_get_contents('./proxyregistry.json'), true);
 
 /// Register on startup
@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	);
 
 	try {
-		$extractedData = extractData($_REQUEST['query'])
-		$resToFront = buildResponse($extractedData)
+		$extractedData = extractData($_REQUEST['query']);
+		$resToFront = buildResponse($extractedData);
 	} catch (Exception $e) {
 		$resToFront['message'] = $e;
 	}
