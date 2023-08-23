@@ -253,12 +253,12 @@ class FunctionsTest extends TestCase {
     /**
      * @dataProvider provideExtractDataValid
      */
-    public function testExtractDataValid() {
+    public function testExtractDataValid($inputArray, $expectedArray) {
 
         $functions = new Functions();
 
-        $actual = $functions->extractData($case[0]);
-        $this->assertEqualsCanonicalizing($case[1], $actual);
+        $actual = $functions->extractData($inputArray);
+        $this->assertEqualsCanonicalizing($expectedArray, $actual);
 
 
     }
@@ -266,12 +266,12 @@ class FunctionsTest extends TestCase {
     /**
      * @dataProvider provideExtractDataDiffCounts
      */
-    public function testExtractDataDiffCounts() {
+    public function testExtractDataDiffCounts($inputArray) {
 
         $functions = new Functions();
 
         $this->expectException(\Exception::class);
-        $actual = $functions->extractData($case[0]);
+        $actual = $functions->extractData($inputArray);
 
     }
 };

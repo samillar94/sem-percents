@@ -61,7 +61,7 @@ class Functions {
       if (!isset($i) && !isset($att) && !isset($av)) {
         $hasNext = false;
       } elseif (!isset($i) || !isset($att) || !isset($av)) {
-        throw new \Exception("Inconsistent counts of component attributes.");
+        throw new \Exception("Inconsistent counts of component attributes");
       };
 
     } ;
