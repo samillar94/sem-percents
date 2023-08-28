@@ -76,10 +76,10 @@ class Functions {
     return $extractedData;
   }
 
-  public function buildResponse($extractedData) {
+  public function buildResults($extractedData) {
 
     try {
-      $resToFront = array(
+      $results = array(
         "error" => false,
         "data" => array(
           "percents" => array(),
@@ -94,20 +94,20 @@ class Functions {
         $availability = $extractedData['availabilities'][$index];
 
         $percent = (100*$attendance/$availability);
-        $resToFront['data']['percents'][] = $percent;
+        $results['data']['percents'][] = $percent;
 
         $line = $item.': '.round($percent).'% attendance';
-        $resToFront['lines'][] = $line;
+        $results['lines'][] = $line;
 
       };
     } catch (Exception $e) {
-      $resToFront = array(
+      $results = array(
         "error" => true,
         "message" => $e
       );
     }
 
-    return $resToFront;
+    return $results;
   }
 };
 ?>

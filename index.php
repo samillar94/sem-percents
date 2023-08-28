@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	header("Access-Control-Allow-Origin: *");
     header('Content-Type: application/json');
 
-	$resToFront = array(
+	$results = array(
 		"error"=> true
 	);
 
@@ -26,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 	try {
 		$extractedData = $functions->extractData($_REQUEST);
-		$resToFront = $functions->buildResponse($extractedData);
+		$results = $functions->buildResults($extractedData);
 	} catch (Exception $e) {
-		$resToFront['message'] = "A function threw an exception: {$e}";
+		$results['message'] = "A function threw an exception: {$e}";
 	}
 
-	echo json_encode($resToFront);
+	echo json_encode($results);
 
 };
 ?>
