@@ -220,7 +220,7 @@ class FunctionsTest extends TestCase {
         $functions = new Functions();
 
         $actual = $functions->BuildResults($inputArray);
-        echo $actual;
+        echo implode($actual);
         $this->assertEqualsCanonicalizing($expectedArray, $actual);
 
     }
