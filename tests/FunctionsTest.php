@@ -142,7 +142,10 @@ class FunctionsTest extends TestCase {
                         "percents" => [],
                     ),
                     "lines" => [
-                        
+                        'Canvas activities: 100% attendance',
+                        'Lab sessions: 5% attendance',
+                        'Lecture sessions: 0% attendance',
+                        'Support sessions: 23% attendance'
                     ]
                 )
             ],
@@ -158,7 +161,10 @@ class FunctionsTest extends TestCase {
                         "percents" => [],
                     ),
                     "lines" => [
-                        
+                        'Canvas: 83% attendance',
+                        'Labs: 38% attendance',
+                        'Lectures: 7% attendance',
+                        'Support: 0% attendance'
                     ]
                 )
             ],
@@ -174,7 +180,8 @@ class FunctionsTest extends TestCase {
                         "percents" => [],
                     ),
                     "lines" => [
-
+                        'Labs: 37% attendance',
+                        'Lectures: 7% attendance'
                     ]
                 )
             ]
@@ -213,6 +220,7 @@ class FunctionsTest extends TestCase {
         $functions = new Functions();
 
         $actual = $functions->BuildResults($inputArray);
+        echo $actual;
         $this->assertEqualsCanonicalizing($expectedArray, $actual);
 
     }
