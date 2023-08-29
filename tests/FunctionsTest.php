@@ -139,7 +139,7 @@ class FunctionsTest extends TestCase {
                 array(
                     "error" => false,
                     "data" => array(
-                        "percents" => [],
+                        "percents" => [0,4.545454545454546,22.727272727272727,100], 
                     ),
                     "lines" => [
                         'Canvas activities: 100% attendance',
@@ -158,7 +158,7 @@ class FunctionsTest extends TestCase {
                 array(
                     "error" => false,
                     "data" => array(
-                        "percents" => [],
+                        "percents" => [6.666666666666667,37.5,0,83.33333333333333],
                     ),
                     "lines" => [
                         'Canvas: 83% attendance',
@@ -177,7 +177,7 @@ class FunctionsTest extends TestCase {
                 array(
                     "error" => false,
                     "data" => array(
-                        "percents" => [],
+                        "percents" => [6.666666666666667,36.666666666666664],
                     ),
                     "lines" => [
                         'Labs: 37% attendance',
