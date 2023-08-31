@@ -4,7 +4,7 @@ use App\Functions;
 $proxy = json_decode(file_get_contents('proxyregistry.json'), true);
 
 /// Register on startup
-$postData = json_encode(["name" => "percents", "healthy" => true]);
+$postData = json_encode(["name" => "percents", "open" => true]);
 $ch = curl_init($proxy['uris'][0]); /// TODO cycle through
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
