@@ -237,14 +237,14 @@ class FunctionsTest extends TestCase {
                     'item_2' => "Labs",
                     'item_3' => "Support",
                     'item_4' => "Canvas",                
-                    'attendance_1' => -50,
-                    'attendance_2' => 10,
-                    'attendance_3' => 1,
-                    'attendance_4' => 0,
-                    'unit_1' => "h",
-                    'unit_2' => "h",
-                    'unit_3' => "h",
-                    'unit_4' => "h",
+                    'attendance_1' => 4,
+                    'attendance_2' => -22.5,
+                    'attendance_3' => 0,
+                    'attendance_4' => 50,
+                    'availability_1' => 60,
+                    'availability_2' => 60,
+                    'availability_3' => 60,
+                    'availability_4' => 60,
                 )
             ),
             array(
@@ -253,14 +253,14 @@ class FunctionsTest extends TestCase {
                     'item_2' => "Labs",
                     'item_3' => "Support",
                     'item_4' => "Canvas",                
-                    'attendance_1' => 55,
-                    'attendance_2' => -8,
-                    'attendance_3' => 1,
-                    'attendance_4' => 0,
-                    'unit_1' => "h",
-                    'unit_2' => "h",
-                    'unit_3' => "h",
-                    'unit_4' => "h",
+                    'attendance_1' => 4,
+                    'attendance_2' => 22.5,
+                    'attendance_3' => 0,
+                    'attendance_4' => 50,
+                    'availability_1' => 60,
+                    'availability_2' => 60,
+                    'availability_3' => -60,
+                    'availability_4' => 60,
                 )
             ),
             array(
@@ -269,14 +269,14 @@ class FunctionsTest extends TestCase {
                     'item_2' => "Labs",
                     'item_3' => "Support",
                     'item_4' => "Canvas",                
-                    'attendance_1' => 55,
-                    'attendance_2' => 10,
-                    'attendance_3' => -1,
-                    'attendance_4' => 0,
-                    'unit_1' => "h",
-                    'unit_2' => "h",
-                    'unit_3' => "h",
-                    'unit_4' => "h",
+                    'attendance_1' => 4,
+                    'attendance_2' => 22.5,
+                    'attendance_3' => 0,
+                    'attendance_4' => -50,
+                    'availability_1' => 60,
+                    'availability_2' => 60,
+                    'availability_3' => 60,
+                    'availability_4' => 60,
                 )
             ),
             array(
@@ -285,14 +285,83 @@ class FunctionsTest extends TestCase {
                     'item_2' => "Labs",
                     'item_3' => "Support",
                     'item_4' => "Canvas",                
-                    'attendance_1' => 55,
-                    'attendance_2' => 10,
-                    'attendance_3' => 1,
-                    'attendance_4' => -85,
-                    'unit_1' => "h",
-                    'unit_2' => "h",
-                    'unit_3' => "h",
-                    'unit_4' => "h",
+                    'attendance_1' => 4,
+                    'attendance_2' => 22.5,
+                    'attendance_3' => 0,
+                    'attendance_4' => 50,
+                    'availability_1' => -6000,
+                    'availability_2' => 60,
+                    'availability_3' => 60,
+                    'availability_4' => 60,
+                )
+            ),
+        ];
+    }
+
+    public function provideExtractDataHigh() {
+        return [
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 4000,
+                    'attendance_2' => 22.5,
+                    'attendance_3' => 0,
+                    'attendance_4' => 50,
+                    'availability_1' => 60,
+                    'availability_2' => 60,
+                    'availability_3' => 60,
+                    'availability_4' => 60,
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 4,
+                    'attendance_2' => 22.4,
+                    'attendance_3' => 0,
+                    'attendance_4' => 50,
+                    'availability_1' => 60,
+                    'availability_2' => 22,
+                    'availability_3' => 60,
+                    'availability_4' => 60,
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 4,
+                    'attendance_2' => 22.5,
+                    'attendance_3' => 61,
+                    'attendance_4' => 50,
+                    'availability_1' => 60,
+                    'availability_2' => 60,
+                    'availability_3' => 60,
+                    'availability_4' => 60,
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 4,
+                    'attendance_2' => 22.5,
+                    'attendance_3' => 0,
+                    'attendance_4' => 50,
+                    'availability_1' => 60,
+                    'availability_2' => 60,
+                    'availability_3' => 60,
+                    'availability_4' => 10,
                 )
             ),
         ];
@@ -386,6 +455,18 @@ class FunctionsTest extends TestCase {
      * @dataProvider provideExtractDataNegative
      */
     public function testExtractDataNegative($inputArray) {
+
+        $functions = new Functions();
+
+        $this->expectException(\Exception::class);
+        $actual = $functions->extractData($inputArray);
+
+    }
+
+    /**
+     * @dataProvider provideExtractDataHigh
+     */
+    public function testExtractDataHigh($inputArray) {
 
         $functions = new Functions();
 
