@@ -33,11 +33,11 @@ class Functions {
       $attFloat = floatval($att);
       $avFloat = floatval($av);
 
-      if (is_nan($attFloat)) {
-          throw new \Exception("Non-numerical/blank attendance");
+      if ($attFloat === 0.0 && !($att === "0" || $att === "0.0")) {
+        throw new \Exception("Non-numerical/blank attendance");
       };
-      if (is_nan($avFloat)) {
-          throw new \Exception("Non-numerical/blank availability");
+      if ($avFloat === 0.0 && !($av === "0" || $av=== "0.0")) {
+        throw new \Exception("Non-numerical/blank availability");
       };
 
       if ($attFloat < 0) {
